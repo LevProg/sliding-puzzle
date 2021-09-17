@@ -1,2 +1,2 @@
 # sliding-puzzle
-![alt text](https://github.com/LevProg/attention-game/blob/master/slide.png?raw=true)
+![alt text](https://github.com/LevProg/sliding-puzzle/blob/master/slide.png?raw=true)
