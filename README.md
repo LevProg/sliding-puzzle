@@ -4,4 +4,4 @@
 ## Using ready-made assets for buttons and backgrounds.
 ## Setting: on/off sounds
 ### All images used under the Creative Commons Zero (CC0) license.
-![alt text](https://github.com/LevProg/sliding-puzzle/blob/main/slide.png?raw=true)
+![alt text](https://github.com/LevProg/sliding-puzzle/blob/main/slide1.png?raw=true)
