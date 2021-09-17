@@ -1,13 +1,7 @@
 ﻿using UnityEngine;
 
 public static class ImageSlicer
-{
-    /// <summary>
-    /// Slice a Texture, cropping a square fit from inside.
-    /// </summary>
-    /// <param name="image">The image to slice, must be enable read/writing</param>
-    /// <param name="blocksPerLine"></param>
-    /// <returns></returns>
+{  
     public static Texture2D[,] GetSlices(Texture2D image, int blocksPerLine)
     {
         int imageSize = Mathf.Min(image.height, image.width);

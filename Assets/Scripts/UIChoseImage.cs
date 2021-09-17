@@ -27,7 +27,7 @@ public class UIChoseImage : MonoBehaviour
     public void GetComplexity(int complexity)//1-matrix 3x3, 2-matrix 4x4
     {
         PlayerPrefs.SetInt("CurrentComplexity", complexity);
-        PlayerPrefs.SetString("CurrentL", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetString("CurrentCategories", SceneManager.GetActiveScene().name);
         Debug.Log(PlayerPrefs.GetInt("CurrentImage", 0) + "   " + PlayerPrefs.GetInt("CurrentComplexity", 0));
         SceneManager.LoadSceneAsync("MainScene");
 

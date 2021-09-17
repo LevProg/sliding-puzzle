@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class Puzzle : MonoBehaviour
 {
+    #region fields
+    #region serialize fields
     [Header("Shuffle")]
     [SerializeField]
     private int shuffleLength;
@@ -22,13 +24,15 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private Texture2D[] Artsimages;
     [SerializeField] private Text timer;
     [SerializeField] private Text mover;
+    #endregion serialize fields
+
     private int moveCount=0;
     private bool isShuffled = false;
     private bool isPlaying = true;
     private Texture2D image;
     private int imageCount;
     private int complexityCount;
-    private string L;
+    private string categories;
     private AudioSource sound;
     private Camera _camera;
     private Block _emptyBlock;
@@ -37,7 +41,7 @@ public class Puzzle : MonoBehaviour
     private Coroutine _animationCoroutine;
     private int _shuffleMovesRemaining;
     private Vector2Int _previousShuffleOffset;
-
+    #endregion fields
     private enum PuzzleState
     {
         Solved,
@@ -60,9 +64,9 @@ public class Puzzle : MonoBehaviour
         StartCoroutine(Timer());
         imageCount = PlayerPrefs.GetInt("CurrentImage", 0);
         complexityCount = PlayerPrefs.GetInt("CurrentComplexity", 1);
-        L= PlayerPrefs.GetString("CurrentL", "Animals");
+        categories= PlayerPrefs.GetString("CurrentCategories", "Animals");
 
-        switch (L)
+        switch (categories)
         {
             case "Animals":
                 image = Animalsimages[imageCount - 1];
@@ -114,7 +118,6 @@ public class Puzzle : MonoBehaviour
     private void StartShuffle()
     {
         _state = PuzzleState.Shuffling;
-        //Message.Instance.DisableText();
         _emptyBlock.gameObject.SetActive(false);
         _shuffleMovesRemaining = shuffleLength;
 
@@ -237,7 +240,6 @@ public class Puzzle : MonoBehaviour
     private IEnumerator DisplayStartMessageAfterSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        //Message.Instance.SetMessage("Tap to play!");
     }
 
     private void MakeNextPlayerMove()
@@ -307,8 +309,8 @@ public class Puzzle : MonoBehaviour
         int pastComplexity = PlayerPrefs.GetInt($"{imageCount}", 0);
         if (complexityCount > pastComplexity)
         {
-            PlayerPrefs.SetInt($"{L}-{imageCount}", complexityCount);
-            PlayerPrefs.SetInt(L, PlayerPrefs.GetInt(L, 0) + (complexityCount - pastComplexity));
+            PlayerPrefs.SetInt($"{categories}-{imageCount}", complexityCount);
+            PlayerPrefs.SetInt(categories, PlayerPrefs.GetInt(categories, 0) + (complexityCount - pastComplexity));
         }
         isPlaying = false;
         _emptyBlock.gameObject.SetActive(true);
